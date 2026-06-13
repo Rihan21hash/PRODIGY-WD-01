@@ -1,0 +1,1152 @@
+/* ==========================================================================
+   Healthcare Navigation Menu · v1.0
+   CSS Architecture: BEM (Block__Element--Modifier)
+   All configurable values exposed as CSS custom properties on :root.
+   Transitions defined exclusively in CSS; JS only toggles class names.
+
+   Design Rules (from PRD §14.5):
+   - No purple/violet/indigo anywhere
+   - No border-radius > 6px on interactive elements
+   - No box-shadow blur > 8px
+   - No gradients on buttons or nav
+   - No white text on Warm Amber
+   - No animations > 300ms on nav elements
+   - No hover states that shift layout (transform only)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS — CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- Nav Dimensions --- */
+  --nav-height: 64px;
+  --nav-max-width: 1200px;
+  --nav-padding-x: 2rem;
+
+  /* --- Colour Palette (PRD §14.1) --- */
+  --color-primary: #2A6B74;          /* Slate Teal */
+  --color-primary-dark: #1C4A52;     /* Deep Teal */
+  --color-accent: #D97B39;           /* Warm Amber — CTA only */
+  --color-emergency: #C0392B;        /* Signal Red — Emergency only */
+  --color-emergency-dark: #992D22;   /* Signal Red hover */
+  --color-surface: #F7F6F3;          /* Chalk White */
+  --color-surface-alt: #EAEDF0;      /* Cool Grey */
+  --color-text-primary: #1E2A35;     /* Charcoal */
+  --color-text-secondary: #5A6A78;   /* Slate Grey */
+  --color-text-muted: #9AAAB8;       /* Fog */
+  --color-divider: #D0D9E1;          /* Pale Steel */
+  --color-success: #3A7D56;          /* Moss Green */
+  --color-warning: #C8962A;          /* Dusty Yellow */
+
+  /* --- Nav-Specific Colours --- */
+  --nav-bg-default: rgba(247, 246, 243, 0.85);
+  --nav-bg-scrolled: #F7F6F3;
+  --nav-shadow-scrolled: 0 1px 0 #D0D9E1;
+
+  /* --- Transitions (capped at 300ms per PRD §14.5) --- */
+  --nav-transition-speed: 250ms;
+  --nav-hover-speed: 140ms;
+
+  /* --- Stacking --- */
+  --nav-z-index: 1000;
+
+  /* --- Typography (PRD §14.2) --- */
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Fraunces', 'Georgia', serif;
+  --nav-font-size: 15px;
+  --nav-font-weight: 500;
+  --nav-active-weight: 600;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. NAV BLOCK — Fixed top bar
+   BEM Block: .nav
+   -------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: var(--nav-z-index);
+  background: var(--nav-bg-default);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
+  font-family: var(--font-body);
+  transition:
+    background var(--nav-transition-speed) ease,
+    box-shadow var(--nav-transition-speed) ease,
+    border-color var(--nav-transition-speed) ease;
+}
+
+/* --- Scrolled State ---
+   BEM Modifier: .nav--scrolled
+   Minimal 1px bottom border-shadow (PRD §14.4)
+   -------------------------------------------------------------------------- */
+.nav--scrolled {
+  background: var(--nav-bg-scrolled);
+  box-shadow: var(--nav-shadow-scrolled);
+  border-bottom-color: var(--color-divider);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. NAV CONTAINER — Inner flex wrapper
+   BEM Element: .nav__container
+   -------------------------------------------------------------------------- */
+.nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--nav-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--nav-padding-x);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. NAV LOGO — Brand mark (left-aligned)
+   BEM Element: .nav__logo
+   -------------------------------------------------------------------------- */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  transition: color var(--nav-hover-speed) ease;
+}
+
+.nav__logo:hover {
+  color: var(--color-primary);
+}
+
+/* Logo icon — flat teal square */
+.nav__logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. NAV LINKS — Horizontal link list (desktop)
+   BEM Element: .nav__links
+   -------------------------------------------------------------------------- */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. NAV LINK — Ghost/Text hover pattern (PRD §14.4)
+   BEM Element: .nav__link
+   Hover: underline slides in from center, text shifts to Slate Teal.
+   No background pill. No transform on the link itself.
+   -------------------------------------------------------------------------- */
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  text-decoration: none;
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  transition: color var(--nav-hover-speed) ease;
+}
+
+/* Underline pseudo-element — hidden by default, slides in on hover */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 1px;
+  transition: transform var(--nav-hover-speed) ease;
+}
+
+/* --- Hover State --- */
+.nav__link:hover {
+  color: var(--color-primary);
+}
+
+.nav__link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* --- Focus Visible (WCAG SC 2.4.7) --- */
+.nav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  color: var(--color-primary);
+}
+
+/* --- Active / Current Page ---
+   BEM Modifier: .nav__link--active
+   Persistent underline + heavier weight (PRD §14.2)
+   -------------------------------------------------------------------------- */
+.nav__link--active {
+  font-weight: var(--nav-active-weight);
+  color: var(--color-primary);
+}
+
+.nav__link--active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. EMERGENCY NAV ITEM — Always Signal Red (PRD §14.4)
+   BEM Modifier: .nav__link--emergency
+   Never adopts standard hover. Stays red at all times.
+   -------------------------------------------------------------------------- */
+.nav__link--emergency {
+  color: var(--color-emergency) !important;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav__link--emergency::after {
+  background: var(--color-emergency) !important;
+  transform: translateX(-50%) scaleX(1);
+  height: 2px;
+}
+
+.nav__link--emergency:hover {
+  color: var(--color-emergency-dark) !important;
+}
+
+.nav__link--emergency:hover::after {
+  background: var(--color-emergency-dark) !important;
+}
+
+.nav__link--emergency:focus-visible {
+  outline-color: var(--color-emergency);
+  color: var(--color-emergency) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. CTA BUTTON — Primary flat button (PRD §14.3)
+   BEM Element: .nav__cta
+   Flat, 4px radius, solid offset shadow on hover, no gradient.
+   -------------------------------------------------------------------------- */
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: none;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  cursor: pointer;
+  transition:
+    background var(--nav-hover-speed) ease,
+    transform var(--nav-hover-speed) ease,
+    box-shadow var(--nav-hover-speed) ease;
+}
+
+.nav__cta:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--color-primary-dark);
+}
+
+.nav__cta:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0px var(--color-primary-dark);
+}
+
+.nav__cta:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. HAMBURGER TOGGLE — Mobile menu trigger (PRD §14.4)
+   BEM Element: .nav__toggle
+   Three lines: 20px wide, 2px tall, 4px gap, Charcoal.
+   Middle fades, outer rotate ±45°.
+   -------------------------------------------------------------------------- */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  z-index: calc(var(--nav-z-index) + 1);
+  transition: background var(--nav-hover-speed) ease;
+}
+
+.nav__toggle:hover {
+  background: var(--color-surface-alt);
+}
+
+.nav__toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* --- Hamburger Bars ---
+   BEM Element: .nav__toggle-bar
+   -------------------------------------------------------------------------- */
+.nav__toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--color-text-primary);
+  transition:
+    transform var(--nav-hover-speed) ease,
+    opacity var(--nav-hover-speed) ease;
+}
+
+/* --- Open State: middle fades, outer rotate ±45° --- */
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE — Tablet & Mobile
+   -------------------------------------------------------------------------- */
+
+/* --- Tablet: <= 1023px --- */
+@media (max-width: 1023px) {
+  :root {
+    --nav-padding-x: 1.5rem;
+  }
+
+  .nav__link {
+    padding: 0.4rem 0.55rem;
+    font-size: 13px;
+  }
+
+  .nav__links {
+    gap: 0;
+  }
+
+  .nav__cta {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* --- Mobile: < 768px --- */
+@media (max-width: 767px) {
+  :root {
+    --nav-padding-x: 1.25rem;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__links {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-divider);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition:
+      max-height 280ms ease,
+      opacity 200ms ease;
+  }
+
+  /* --- Mobile Menu Open ---
+     BEM Modifier: .nav__links--open
+     -------------------------------------------------------------------------- */
+  .nav__links--open {
+    max-height: 420px;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .nav__link,
+  .nav__cta {
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0;
+    font-size: 15px;
+    justify-content: flex-start;
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link:hover {
+    background: var(--color-surface-alt);
+  }
+
+  .nav__link--active {
+    border-left: 3px solid var(--color-primary);
+    background: rgba(42, 107, 116, 0.04);
+  }
+
+  .nav__link--emergency {
+    border-left: 3px solid var(--color-emergency) !important;
+  }
+
+  .nav__cta {
+    margin: 0.5rem 1.25rem 0;
+    width: calc(100% - 2.5rem);
+    justify-content: center;
+    text-align: center;
+    border-radius: 4px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. REDUCED MOTION (WCAG SC 2.3.1, FR-15)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav__link,
+  .nav__link::after,
+  .nav__cta,
+  .nav__toggle-bar,
+  .nav__links {
+    transition-duration: 0ms !important;
+  }
+}
+
+
+/* ==========================================================================
+   DEMO PAGE STYLES — Healthcare Platform
+   Not part of the nav component. Only for index.html demo.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Hero Section --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: calc(var(--nav-height) + 3rem) 2rem 4rem;
+  text-align: center;
+  background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(42, 107, 116, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(217, 123, 57, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  background: rgba(42, 107, 116, 0.08);
+  border: 1px solid rgba(42, 107, 116, 0.15);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  z-index: 1;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  z-index: 1;
+}
+
+.hero__title span {
+  color: var(--color-primary);
+}
+
+.hero__subtitle {
+  max-width: 560px;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--color-text-secondary);
+  margin-bottom: 2.5rem;
+  z-index: 1;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  z-index: 1;
+}
+
+/* --- Buttons (PRD §14.3) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all var(--nav-hover-speed) ease;
+}
+
+.btn--primary {
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--color-primary-dark);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0px var(--color-primary-dark);
+}
+
+.btn--secondary {
+  color: var(--color-primary);
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  padding: 11px 27px;
+}
+
+.btn--secondary:hover {
+  color: var(--color-surface);
+  background: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn--emergency {
+  color: #ffffff;
+  background: var(--color-emergency);
+}
+
+.btn--emergency:hover {
+  background: var(--color-emergency-dark);
+  box-shadow: 4px 4px 0px var(--color-emergency-dark);
+  transform: translateY(-2px);
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: floatHint 2s ease-in-out infinite;
+}
+
+.hero__scroll-hint svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-text-muted);
+}
+
+@keyframes floatHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* --- Hero Stats Bar --- */
+.hero__stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  z-index: 1;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.hero__stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.hero__stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --- Content Sections --- */
+.section {
+  padding: 5rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section--alt {
+  background: var(--color-surface-alt);
+  max-width: 100%;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.section--alt .section__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section__label {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(42, 107, 116, 0.08);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section__label--emergency {
+  background: rgba(192, 57, 43, 0.08);
+  color: var(--color-emergency);
+}
+
+.section__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section__text {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.section__text a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.section__text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Cards Grid --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  transition: all 200ms ease;
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card__icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.card__text {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.35rem;
+}
+
+/* Card detail paragraphs — for remedies, when-to-see-doctor, etc. */
+.card__detail {
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-divider);
+}
+
+/* Card lists — for treatments, emergency, etc. */
+.card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+
+.card__list li {
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  position: relative;
+}
+
+.card__list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.card__list--emergency li::before {
+  color: var(--color-emergency);
+}
+
+.card__list li strong {
+  color: var(--color-text-primary);
+}
+
+.card__list li a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card__list li a:hover {
+  text-decoration: underline;
+}
+
+.card__action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.card__action:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Emergency card variant */
+.card--emergency {
+  border-color: rgba(192, 57, 43, 0.2);
+  background: rgba(192, 57, 43, 0.02);
+}
+
+.card--emergency:hover {
+  border-color: var(--color-emergency);
+}
+
+.card--emergency .card__action {
+  color: var(--color-emergency);
+}
+
+/* --- Data Table --- */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  min-width: 600px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: rgba(42, 107, 116, 0.06);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-divider);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  vertical-align: top;
+}
+
+.data-table tr:hover td {
+  background: rgba(42, 107, 116, 0.02);
+}
+
+.urgent-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(192, 57, 43, 0.1);
+  color: var(--color-emergency);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- Crisis Banner --- */
+.crisis-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 6px;
+  background: rgba(192, 57, 43, 0.04);
+  border: 1px solid rgba(192, 57, 43, 0.15);
+  margin-top: 2rem;
+}
+
+.crisis-banner--large {
+  padding: 1.5rem 2rem;
+  margin-top: 2.5rem;
+  background: rgba(192, 57, 43, 0.06);
+  border-color: rgba(192, 57, 43, 0.25);
+}
+
+.crisis-banner__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.crisis-banner__text {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+}
+
+.crisis-banner__text strong {
+  color: var(--color-emergency);
+}
+
+.crisis-banner__text a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.crisis-banner__text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — Full Breakpoint Coverage
+   ========================================================================== */
+
+/* --- Tablet: <= 1023px --- */
+@media (max-width: 1023px) {
+  .hero__stats {
+    gap: 2rem;
+  }
+
+  .hero__stat-number {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 4rem 1.75rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Mobile: < 768px --- */
+@media (max-width: 767px) {
+  .hero {
+    padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
+    min-height: auto;
+  }
+
+  .hero__badge {
+    font-size: 0.72rem;
+  }
+
+  .hero__subtitle {
+    margin-bottom: 2rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .btn {
+    justify-content: center;
+    width: 100%;
+    padding: 14px 24px;
+  }
+
+  .hero__stats {
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero__stat-number {
+    font-size: 1.4rem;
+  }
+
+  .hero__stat-label {
+    font-size: 0.65rem;
+  }
+
+  .hero__scroll-hint {
+    display: none;
+  }
+
+  .section {
+    padding: 3rem 1.25rem;
+  }
+
+  .section--alt {
+    padding: 3rem 1.25rem;
+  }
+
+  .section__title {
+    font-size: 1.5rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .data-table {
+    font-size: 0.82rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .crisis-banner {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .crisis-banner--large {
+    padding: 1.25rem;
+  }
+
+  .crisis-banner__text {
+    font-size: 0.85rem;
+  }
+
+  .footer {
+    padding: 2rem 1.25rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* --- Small Mobile: <= 480px --- */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 1.8rem;
+  }
+
+  .hero__stats {
+    gap: 1rem;
+  }
+
+  .hero__stat-number {
+    font-size: 1.2rem;
+  }
+
+  .section__title {
+    font-size: 1.3rem;
+  }
+
+  .card__title {
+    font-size: 1rem;
+  }
+
+  .card__text,
+  .card__detail,
+  .card__list li {
+    font-size: 0.82rem;
+  }
+
+  .data-table {
+    min-width: 520px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+}

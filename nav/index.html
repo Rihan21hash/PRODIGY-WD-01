@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HealthBridge — Trusted healthcare information on symptoms, conditions, treatments, mental health support, and emergency contacts for India.">
+  <title>HealthBridge - Trusted Healthcare Information</title>
+
+  <!-- Google Fonts: Inter + Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS — Animate on Scroll Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       NAVIGATION BAR
+       ==================================================================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation" id="main-nav">
+    <div class="nav__container">
+      <a href="#home" class="nav__logo" id="nav-logo">
+        <span class="nav__logo-icon" aria-hidden="true">H</span>
+        HealthBridge
+      </a>
+
+      <button
+        class="nav__toggle"
+        id="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Toggle menu"
+      >
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav__links" id="nav-links">
+        <li class="nav__item">
+          <a href="#home" class="nav__link nav__link--active" id="nav-link-home" aria-current="page">Home</a>
+        </li>
+        <li class="nav__item">
+          <a href="#conditions" class="nav__link" id="nav-link-conditions">Common Conditions</a>
+        </li>
+        <li class="nav__item">
+          <a href="#symptoms" class="nav__link" id="nav-link-symptoms">Symptoms</a>
+        </li>
+        <li class="nav__item">
+          <a href="#treatments" class="nav__link" id="nav-link-treatments">Treatments</a>
+        </li>
+        <li class="nav__item">
+          <a href="#mental-health" class="nav__link" id="nav-link-mental-health">Mental Health</a>
+        </li>
+        <li class="nav__item">
+          <a href="#emergency" class="nav__link nav__link--emergency" id="nav-link-emergency">Emergency</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ====================================================================
+       HERO SECTION
+       ==================================================================== -->
+  <section class="hero" id="home">
+    <h1 class="hero__title" data-aos="fade-up" data-aos-delay="200">
+      Clear, Reliable<br><span>Healthcare Guidance</span>
+    </h1>
+    <p class="hero__subtitle" data-aos="fade-up" data-aos-delay="350">
+      Evidence-based information on common conditions, symptoms, treatments, and mental health — written for patients, reviewed by clinicians. Helpline: <strong>104</strong> (Health Helpline, 24/7).
+    </p>
+    <div class="hero__actions" data-aos="fade-up" data-aos-delay="500">
+      <a href="#conditions" class="btn btn--primary" id="hero-cta-conditions">
+        Browse Conditions
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#symptoms" class="btn btn--secondary" id="hero-cta-symptoms">Check Symptoms</a>
+    </div>
+    <div class="hero__stats" data-aos="fade-up" data-aos-delay="650">
+      <div class="hero__stat">
+        <span class="hero__stat-number">112</span>
+        <span class="hero__stat-label">National Emergency</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">108</span>
+        <span class="hero__stat-label">Ambulance Service</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">104</span>
+        <span class="hero__stat-label">Health Helpline</span>
+      </div>
+    </div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       COMMON CONDITIONS (Real medical data)
+       ==================================================================== -->
+  <section class="section" id="conditions">
+    <span class="section__label" data-aos="fade-right">Common Conditions</span>
+    <h2 class="section__title" data-aos="fade-up">Conditions We Cover</h2>
+    <p class="section__text" data-aos="fade-up" data-aos-delay="100">
+      India bears a significant burden of both communicable and non-communicable diseases. Below are high-prevalence conditions with evidence-based guidance.
+    </p>
+    <div class="cards">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Hypertension</h3>
+        <p class="card__text">Affects ~30% of Indian adults. Normal BP is below 120/80 mmHg. Stage 1 begins at 130/80. Risk factors include high salt intake, obesity, stress, and family history.</p>
+        <p class="card__detail"><strong>Home management:</strong> Reduce sodium to &lt;5g/day, walk 30 mins daily, limit alcohol, practice deep breathing or yoga (Pranayama).</p>
+        <p class="card__detail"><strong>When to see a doctor:</strong> BP consistently above 140/90, headaches, blurred vision, or chest discomfort.</p>
+        <a href="tel:104" class="card__action">Call 104 — Health Helpline →</a>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Type 2 Diabetes</h3>
+        <p class="card__text">India has 101 million diabetics (IDF 2023). Fasting glucose &gt;126 mg/dL or HbA1c &gt;6.5% confirms diagnosis. Often linked to sedentary lifestyle and genetic predisposition.</p>
+        <p class="card__detail"><strong>Home management:</strong> Prefer whole grains (ragi, jowar, bajra) over refined flour. Include bitter gourd (karela), methi seeds, and cinnamon in diet. Walk 45 mins daily.</p>
+        <p class="card__detail"><strong>When to see a doctor:</strong> Excessive thirst, frequent urination, unexplained weight loss, wounds that won't heal.</p>
+        <a href="tel:104" class="card__action">Call 104 — Health Helpline →</a>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Asthma</h3>
+        <p class="card__text">Affects ~34.3 million Indians. Triggered by dust, pollen, cold air, pollution (AQI &gt;200), and respiratory infections. Peak season: Oct–Feb in North India.</p>
+        <p class="card__detail"><strong>Home management:</strong> Keep reliever inhaler (Salbutamol) accessible always. Use steam inhalation with eucalyptus oil. Avoid incense/dhoop during flare-ups. Use N95 mask on high AQI days.</p>
+        <p class="card__detail"><strong>When to see a doctor:</strong> Inhaler needed &gt;2 times/week, nighttime symptoms, difficulty completing sentences.</p>
+        <a href="tel:108" class="card__action">Call 108 — Ambulance (severe attack) →</a>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Anxiety Disorders</h3>
+        <p class="card__text">~45 million Indians affected (WHO). Includes Generalised Anxiety Disorder (GAD), panic attacks, and social anxiety. Stigma remains a major barrier to treatment.</p>
+        <p class="card__detail"><strong>Self-help:</strong> Box breathing (4-4-4-4 technique), progressive muscle relaxation, limit caffeine/tea to 2 cups/day. Apps: Wysa (Indian mental health app), Headspace.</p>
+        <p class="card__detail"><strong>When to seek help:</strong> Anxiety persists &gt;2 weeks, interferes with work/relationships, physical symptoms (heart racing, trembling).</p>
+        <a href="tel:08046110007" class="card__action">Call iCall — 9152987821 →</a>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Lower Back Pain</h3>
+        <p class="card__text">Affects ~60% of Indians at some point. Major causes: prolonged sitting (IT sector), poor posture, lifting heavy loads (manual labour), vitamin D deficiency.</p>
+        <p class="card__detail"><strong>Home management:</strong> Avoid prolonged bed rest — stay active. Apply warm compress for 20 mins, 3x/day. Cat-cow yoga stretches. Ensure 15 mins sun exposure daily for Vitamin D.</p>
+        <p class="card__detail"><strong>Red flags — see doctor immediately:</strong> Leg numbness/weakness, loss of bladder control, pain after a fall/injury, fever with back pain.</p>
+        <a href="tel:104" class="card__action">Call 104 — Health Helpline →</a>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Migraine</h3>
+        <p class="card__text">Prevalence ~14% in India. More common in women (3:1 ratio). Triggered by irregular meals, dehydration, screen time, strong perfumes, weather changes, and menstrual cycle.</p>
+        <p class="card__detail"><strong>Home management:</strong> Maintain a trigger diary. Stay hydrated (3L/day). Apply cold compress on forehead. Drink ginger tea at onset. Rest in a dark, quiet room. Magnesium-rich foods (almonds, spinach).</p>
+        <p class="card__detail"><strong>When to see a doctor:</strong> &gt;4 attacks/month, aura symptoms (visual disturbances), pain not relieved by OTC painkillers within 2 hours.</p>
+        <a href="tel:104" class="card__action">Call 104 — Health Helpline →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SYMPTOMS — Real medical triage guidance
+       ==================================================================== -->
+  <section class="section section--alt" id="symptoms">
+    <div class="section__inner">
+      <span class="section__label" data-aos="fade-right">Symptoms</span>
+      <h2 class="section__title" data-aos="fade-up">Check Your Symptoms</h2>
+      <p class="section__text" data-aos="fade-up" data-aos-delay="100">
+        Don't know your condition? Start with what you're feeling. If any symptom appears in the "Immediately" column, call <strong>112</strong> or <strong>108</strong> without delay.
+      </p>
+      <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Symptom</th>
+              <th>Common Causes</th>
+              <th>When to Seek Care</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Chest pain</strong></td>
+              <td>Acidity (GERD), muscle strain, angina, heart attack (MI)</td>
+              <td><span class="urgent-tag">Call 112</span> if crushing, radiating to left arm/jaw, or with sweating & breathlessness</td>
+            </tr>
+            <tr>
+              <td><strong>Shortness of breath</strong></td>
+              <td>Asthma, anxiety, COPD, pneumonia, heart failure</td>
+              <td><span class="urgent-tag">Call 108</span> if sudden onset at rest, blue lips, or unable to speak in full sentences</td>
+            </tr>
+            <tr>
+              <td><strong>Persistent fatigue</strong></td>
+              <td>Anaemia (iron/B12), thyroid disorder, diabetes, depression, dengue recovery</td>
+              <td>See doctor within 1 week if lasting &gt;4 weeks without clear cause. Blood test: CBC, TSH, HbA1c</td>
+            </tr>
+            <tr>
+              <td><strong>Severe headache</strong></td>
+              <td>Tension, migraine, hypertension, sinusitis, meningitis</td>
+              <td><span class="urgent-tag">Call 112</span> if sudden "thunderclap" onset, stiff neck, fever, confusion, or worst headache of life</td>
+            </tr>
+            <tr>
+              <td><strong>High fever (&gt;103°F / 39.4°C)</strong></td>
+              <td>Dengue, malaria, typhoid, COVID-19, UTI, viral infection</td>
+              <td><span class="urgent-tag">Call 108</span> if with rash, bleeding gums, severe body pain, or altered consciousness. Get dengue NS1 test if in monsoon season</td>
+            </tr>
+            <tr>
+              <td><strong>Unexplained weight loss</strong></td>
+              <td>Diabetes, hyperthyroidism, TB, malignancy, depression</td>
+              <td>See doctor within 2 weeks if &gt;5% body weight lost in 6 months. TB screening if with chronic cough</td>
+            </tr>
+            <tr>
+              <td><strong>Severe abdominal pain</strong></td>
+              <td>Appendicitis, kidney stones, gallstones, gastric ulcer, pancreatitis</td>
+              <td><span class="urgent-tag">Call 108</span> if sudden sharp pain, rigid abdomen, bloody stool/vomit, or fainting</td>
+            </tr>
+            <tr>
+              <td><strong>Persistent cough (&gt;3 weeks)</strong></td>
+              <td>TB, asthma, GERD, post-nasal drip, lung infection</td>
+              <td>Get chest X-ray and sputum test. <span class="urgent-tag">Urgent</span> if coughing blood or night sweats (TB screening mandatory)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="crisis-banner" data-aos="fade-up" data-aos-delay="300">
+        <span class="crisis-banner__icon" aria-hidden="true">⚕️</span>
+        <div class="crisis-banner__text">
+          <strong>Quick tip:</strong> For non-emergency medical advice, call the Government Health Helpline <a href="tel:104"><strong>104</strong></a> (available 24/7 in most states). For telemedicine, use <strong>eSanjeevani</strong> — free video consultation with government doctors.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       TREATMENTS — Real remedies & pathways
+       ==================================================================== -->
+  <section class="section" id="treatments">
+    <span class="section__label" data-aos="fade-right">Treatments</span>
+    <h2 class="section__title" data-aos="fade-up">Treatment Pathways</h2>
+    <p class="section__text" data-aos="fade-up" data-aos-delay="100">
+      From evidence-based home remedies to clinical interventions — understand your options. Always verify with a qualified doctor before starting any treatment.
+    </p>
+    <div class="cards">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Medications</h3>
+        <p class="card__text"><strong>Common OTC medicines (India):</strong></p>
+        <ul class="card__list">
+          <li><strong>Paracetamol (Dolo/Crocin):</strong> Fever & mild pain — 500mg, max 4g/day</li>
+          <li><strong>Cetirizine:</strong> Allergies, runny nose — 10mg once daily</li>
+          <li><strong>ORS (Electral/ORS WHO):</strong> Dehydration from diarrhoea/vomiting — 1 sachet in 1L water</li>
+          <li><strong>Antacid (Gelusil/Digene):</strong> Acidity & heartburn — after meals</li>
+        </ul>
+        <p class="card__detail"><strong>Never self-prescribe antibiotics.</strong> Antibiotic resistance is a serious crisis in India.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Home Remedies (Evidence-Based)</h3>
+        <p class="card__text"><strong>Remedies supported by clinical evidence:</strong></p>
+        <ul class="card__list">
+          <li><strong>Turmeric milk (Haldi doodh):</strong> Anti-inflammatory — 1 tsp turmeric + warm milk for sore throat, joint pain</li>
+          <li><strong>Ginger tea (Adrak chai):</strong> Nausea relief, cold & cough — boil 1 inch ginger in water, add honey</li>
+          <li><strong>Tulsi (Holy Basil):</strong> Respiratory infections — 5-6 leaves in boiling water as decoction</li>
+          <li><strong>Ajwain water:</strong> Bloating & indigestion — 1 tsp ajwain boiled in 1 glass water</li>
+          <li><strong>Honey + warm water:</strong> Sore throat, mild cough — 1 tbsp honey (do NOT give to infants &lt;1 year)</li>
+          <li><strong>Jeera (Cumin) water:</strong> Acidity & metabolism — soak 1 tsp overnight, drink in morning</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Lifestyle & Yoga</h3>
+        <p class="card__text"><strong>AYUSH Ministry recommended practices:</strong></p>
+        <ul class="card__list">
+          <li><strong>Pranayama (Anulom Vilom):</strong> Stress, anxiety, mild hypertension — 10 mins/day</li>
+          <li><strong>Surya Namaskar:</strong> Overall fitness — 12 rounds daily for cardiovascular health</li>
+          <li><strong>Walking:</strong> Diabetes management — 45 mins brisk walking, 5 days/week</li>
+          <li><strong>Diet (Indian plate method):</strong> ½ plate vegetables, ¼ whole grains (roti/brown rice), ¼ dal/protein</li>
+          <li><strong>Sleep hygiene:</strong> 7–8 hrs, no screens 1 hr before bed, consistent schedule</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Government Health Schemes</h3>
+        <p class="card__text"><strong>Free/subsidised healthcare in India:</strong></p>
+        <ul class="card__list">
+          <li><strong>Ayushman Bharat (PM-JAY):</strong> Free treatment up to ₹5 lakh/year for eligible families — <a href="tel:14555">call 14555</a></li>
+          <li><strong>Jan Aushadhi Kendras:</strong> Generic medicines at 50–90% lower cost — 10,000+ stores across India</li>
+          <li><strong>eSanjeevani:</strong> Free telemedicine — esanjeevani.mohfw.gov.in</li>
+          <li><strong>PHC/CHC:</strong> Free primary care at your nearest Primary Health Centre</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       MENTAL HEALTH — Real Indian helplines & resources
+       ==================================================================== -->
+  <section class="section section--alt" id="mental-health">
+    <div class="section__inner">
+      <span class="section__label" data-aos="fade-right">Mental Health</span>
+      <h2 class="section__title" data-aos="fade-up">Mental Health Support</h2>
+      <p class="section__text" data-aos="fade-up" data-aos-delay="100">
+        Mental health is health. 1 in 7 Indians is affected by mental health conditions (NIMHANS). Help is available — reaching out is a sign of strength, not weakness.
+      </p>
+      <div class="cards">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card__icon"></div>
+          <h3 class="card__title">Depression</h3>
+          <p class="card__text">Persistent sadness, loss of interest, sleep changes, fatigue lasting &gt;2 weeks. India has ~57 million people with depression (WHO). It is treatable.</p>
+          <p class="card__detail"><strong>Self-help:</strong> Maintain daily routine, physical activity 30 mins/day, talk to someone you trust, use Wysa or YourDOST apps.</p>
+          <p class="card__detail"><strong>Professional help:</strong> Visit your nearest government hospital psychiatry OPD (free). Private consultation: ~₹500–1500.</p>
+          <a href="tel:08046110007" class="card__action">Vandrevala Foundation — 1860-2662-345 →</a>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card__icon"></div>
+          <h3 class="card__title">Anxiety</h3>
+          <p class="card__text">Excessive worry, restlessness, rapid heartbeat, difficulty concentrating. Often co-occurs with depression. Common in students and working professionals.</p>
+          <p class="card__detail"><strong>Self-help:</strong> Box breathing (inhale 4s → hold 4s → exhale 4s → hold 4s). Limit caffeine. 5-4-3-2-1 grounding technique. Journal 10 mins/day.</p>
+          <p class="card__detail"><strong>Free counselling:</strong> iCall (TISS) — <a href="tel:9152987821">9152987821</a> (Mon–Sat, 8am–10pm)</p>
+          <a href="tel:9152987821" class="card__action">Call iCall — 9152987821 →</a>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card__icon"></div>
+          <h3 class="card__title">Grief &amp; Loss</h3>
+          <p class="card__text">Grief is natural after loss. Complicated grief lasts &gt;12 months and interferes with daily function. Cultural mourning practices can be healing — allow yourself the process.</p>
+          <p class="card__detail"><strong>Support:</strong> Talk to family/community elders. Join bereavement support groups. Seek professional help if you feel "stuck" in grief.</p>
+          <p class="card__detail"><strong>Helpline:</strong> AASRA — <a href="tel:9820466726">9820466726</a> (24/7)</p>
+        </div>
+        <div class="card card--emergency" data-aos="fade-up" data-aos-delay="400">
+          <div class="card__icon"></div>
+          <h3 class="card__title">Crisis &amp; Suicide Prevention</h3>
+          <p class="card__text">If you or someone you know is in immediate danger or having suicidal thoughts — you are not alone. Help is available right now.</p>
+          <p class="card__detail"><strong>What to do:</strong> Stay with the person. Remove access to harmful means. Call a helpline below. Do NOT leave them alone.</p>
+          <a href="tel:112" class="card__action">Emergency — 112 →</a>
+        </div>
+      </div>
+
+      <!-- Crisis Helplines — Real Indian numbers -->
+      <div class="crisis-banner" data-aos="fade-up" data-aos-delay="200">
+        <span class="crisis-banner__icon" aria-hidden="true"></span>
+        <div class="crisis-banner__text">
+          <strong>24/7 Crisis Helplines (India):</strong><br>
+          🔴 <strong>Vandrevala Foundation:</strong> <a href="tel:18602662345">1860-2662-345</a> / <a href="tel:18001239999">1800-123-9999</a> (toll-free, 24/7)<br>
+          🔴 <strong>iCall (TISS Mumbai):</strong> <a href="tel:9152987821">9152987821</a> (Mon–Sat, 8am–10pm)<br>
+          🔴 <strong>AASRA:</strong> <a href="tel:9820466726">9820466726</a> (24/7)<br>
+          🔴 <strong>Snehi:</strong> <a href="tel:04424640050">044-24640050</a> (24/7)<br>
+          🔴 <strong>NIMHANS Helpline:</strong> <a href="tel:08046110007">080-46110007</a> (24/7)
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       EMERGENCY — Real Indian emergency numbers & guidance
+       ==================================================================== -->
+  <section class="section" id="emergency">
+    <span class="section__label section__label--emergency" data-aos="fade-right">Emergency</span>
+    <h2 class="section__title" data-aos="fade-up">Emergency &amp; Urgent Care</h2>
+    <p class="section__text" data-aos="fade-up" data-aos-delay="100">
+      Know when to act. Every government hospital in India is legally required to provide free emergency treatment for the first 24 hours regardless of payment ability (MTP Act / Supreme Court directive).
+    </p>
+    <div class="cards">
+      <div class="card card--emergency" data-aos="fade-up" data-aos-delay="100">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Call 112 — National Emergency</h3>
+        <p class="card__text"><strong>Call immediately for:</strong></p>
+        <ul class="card__list card__list--emergency">
+          <li>Crushing chest pain or signs of heart attack</li>
+          <li>Stroke symptoms — FAST: Face drooping, Arm weakness, Speech difficulty, Time to call 112</li>
+          <li>Severe breathing difficulty or choking</li>
+          <li>Heavy uncontrolled bleeding</li>
+          <li>Loss of consciousness or seizures</li>
+          <li>Suspected poisoning or overdose</li>
+          <li>Severe burns or major trauma/accident</li>
+          <li>Snakebite (get to hospital within 1 hour — anti-venom is time-critical)</li>
+        </ul>
+        <a href="tel:112" class="card__action" style="color: var(--color-emergency); font-size: 1rem;">📞 Call 112 Now →</a>
+      </div>
+      <div class="card card--emergency" data-aos="fade-up" data-aos-delay="200">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Call 108 — Ambulance</h3>
+        <p class="card__text"><strong>Free government ambulance service</strong> available in most Indian states. Also call for:</p>
+        <ul class="card__list card__list--emergency">
+          <li>Pregnancy complications or emergency delivery</li>
+          <li>Road traffic accident — do NOT move the victim (spinal injury risk)</li>
+          <li>High fever (&gt;104°F) with confusion or convulsions</li>
+          <li>Severe allergic reaction (anaphylaxis) — difficulty breathing, swelling of face/throat</li>
+          <li>Suspected dengue with bleeding signs (monsoon season)</li>
+        </ul>
+        <a href="tel:108" class="card__action" style="color: var(--color-emergency); font-size: 1rem;">📞 Call 108 Now →</a>
+      </div>
+      <div class="card card--emergency" data-aos="fade-up" data-aos-delay="300">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Poison Control</h3>
+        <p class="card__text"><strong>National Poison Information Centre (AIIMS Delhi):</strong></p>
+        <ul class="card__list card__list--emergency">
+          <li>Helpline: <a href="tel:01126593677"><strong>011-26593677</strong></a> or <a href="tel:01126589391"><strong>011-26589391</strong></a></li>
+          <li>Available 24/7 — operated by AIIMS New Delhi</li>
+          <li><strong>Do NOT</strong> induce vomiting unless instructed by a doctor</li>
+          <li><strong>Do NOT</strong> give milk or water to an unconscious person</li>
+          <li>Bring the poison container/label to the hospital</li>
+          <li>Common in India: pesticide ingestion, rat poison, kerosene, medication overdose</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card__icon"></div>
+        <h3 class="card__title">Not Sure? Here's How to Decide</h3>
+        <p class="card__text"><strong>Quick triage guide:</strong></p>
+        <ul class="card__list">
+          <li><strong>Call 112/108:</strong> Life-threatening, loss of consciousness, severe bleeding, chest pain, breathing difficulty, stroke signs</li>
+          <li><strong>Go to ER (within 1 hour):</strong> Fractures, deep cuts, severe pain, high fever with rash, snakebite</li>
+          <li><strong>See doctor today:</strong> Persistent vomiting, moderate fever &gt;2 days, new shortness of breath, severe headache</li>
+          <li><strong>Schedule appointment:</strong> Chronic symptoms, routine follow-up, mild ongoing issues</li>
+          <li><strong>Call 104:</strong> Health advice, nearest hospital info, general medical queries</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="crisis-banner crisis-banner--large" data-aos="fade-up" data-aos-delay="200">
+      <span class="crisis-banner__icon" aria-hidden="true"></span>
+      <div class="crisis-banner__text">
+        <strong>All Emergency Numbers (India):</strong><br>
+         <strong>National Emergency:</strong> <a href="tel:112"><strong>112</strong></a> &nbsp;|&nbsp;
+         <strong>Ambulance:</strong> <a href="tel:108"><strong>108</strong></a> &nbsp;|&nbsp;
+         <strong>Health Helpline:</strong> <a href="tel:104"><strong>104</strong></a><br>
+         <strong>Fire:</strong> <a href="tel:101"><strong>101</strong></a> &nbsp;|&nbsp;
+         <strong>Police:</strong> <a href="tel:100"><strong>100</strong></a> &nbsp;|&nbsp;
+         <strong>Women Helpline:</strong> <a href="tel:181"><strong>181</strong></a> &nbsp;|&nbsp;
+         <strong>Child Helpline:</strong> <a href="tel:1098"><strong>1098</strong></a><br>
+         <strong>Poison Control (AIIMS):</strong> <a href="tel:01126593677"><strong>011-2659-3677</strong></a> &nbsp;|&nbsp;
+         <strong>Mental Health (NIMHANS):</strong> <a href="tel:08046110007"><strong>080-4611-0007</strong></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <p>
+      &copy; 2026 HealthBridge — This content is for informational purposes only and does not constitute medical advice.
+      Always consult a qualified healthcare professional for diagnosis and treatment.
+    </p>
+    <p style="margin-top: 0.5rem;">
+      <strong>In an emergency, always call <a href="tel:112">112</a> or <a href="tel:108">108</a>.</strong>
+    </p>
+    <p style="margin-top: 0.75rem; font-size: 0.75rem;">
+      Sources: WHO India, NIMHANS, IDF Diabetes Atlas 2023, AIIMS Delhi, Ministry of Health & Family Welfare (MoHFW)
+    </p>
+  </footer>
+
+
+  <!-- AOS — Animate on Scroll -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60,
+      disable: function () {
+        // Respect prefers-reduced-motion
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
+    });
+  </script>
+  <script src="nav.js"></script>
+
+</body>
+</html>

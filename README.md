@@ -10,7 +10,7 @@ A responsive healthcare information website that provides users with educational
 
 ## Live Demo
 
-🔗 **Website:** https://rihan21hash.github.io/PRODIGY-WD-01/
+**Website:** https://rihan21hash.github.io/PRODIGY-WD-01/
 
 ## About The Project
 
